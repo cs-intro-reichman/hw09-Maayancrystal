@@ -69,10 +69,10 @@ public class LanguageModel {
 
     // Computes and sets the probabilities (p and cp fields) of all the
 	// characters in the given list. */
-	public void calculateProbabilities(List probs) {				
-		int count = 0;
+	public static void calculateProbabilities(List probs) {				
+		double count = 0;
         for(int i = 0 ; i < probs.getSize() ; i++){
-            CharData  ch = probs.get(i);
+            CharData ch = probs.get(i);
             if (ch != null){
                 count = count + ch.count;
             }
@@ -82,7 +82,7 @@ public class LanguageModel {
         for(int i = 0 ; i < probs.getSize() ; i++){
             CharData ch = probs.get(i);
             if(ch != null){
-            ch.p = (double) (count / ch.count);
+            ch.p = (double) (ch.count / count);
             ch.cp = (double) (totalCp + ch.p);
             totalCp = ch.cp;
             }
@@ -91,12 +91,14 @@ public class LanguageModel {
 	
 
     // Returns a random character from the given probabilities list.
-	public char getRandomChar(List probs) {
-		    double r = Math.random();
+	public static char getRandomChar(List probs) {
+		    double r = (double)(Math.random() * 1) ;
+            System.out.println(r);
             CharData ch = probs.get(0);
             char toreturn = ch.chr;
             for(int i = 1 ; i < probs.getSize() ; i++){
                 if (ch != null){
+                    System.out.println(ch.cp);
                     if(ch.cp > r){
                         return ch.chr;
                     }
@@ -104,7 +106,6 @@ public class LanguageModel {
                 ch = probs.get(i);
             }
             return toreturn;
-
 	}
 
     /**
@@ -129,6 +130,20 @@ public class LanguageModel {
 	}
 
     public static void main(String[] args) {
-		// Your code goes here
+        List newl = new List();
+        newl.addFirst(' ');
+        newl.addFirst('e');
+        newl.addFirst('t');
+        newl.addFirst('m');
+        newl.addFirst('o');
+        newl.addFirst('c');
+        newl.update('m');
+        newl.update('e');
+        
+		for(int i = 0 ; i < 10 ; i++){
+            calculateProbabilities(newl);
+            System.out.println(getRandomChar(newl));
+        }
+          
     }
 }

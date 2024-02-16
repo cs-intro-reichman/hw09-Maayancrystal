@@ -37,7 +37,7 @@ public class LanguageModel {
         char c; 
         
         In in = new In(fileName);
-        for(int i = 1 ; i <= 4 ; i++){
+        for(int i = 1 ; i <= 2 ; i++){
             if(!in.isEmpty()){
                 window = window + in.readChar();
             }
@@ -93,6 +93,7 @@ public class LanguageModel {
     // Returns a random character from the given probabilities list.
 	public static char getRandomChar(List probs) {
 		    double r = (double)(Math.random() * 1) ;
+            System.out.println(r);
             CharData ch = probs.get(0);
             char toreturn = ch.chr;
             if(ch.cp > r){
@@ -133,14 +134,10 @@ public class LanguageModel {
 
     public static void main(String[] args) {
         List newl = new List();
-        newl.addFirst(' ');
         newl.addFirst('e');
-        newl.addFirst('t');
         newl.addFirst('m');
-        newl.addFirst('o');
-        newl.addFirst('c');
-        newl.update('m');
-        newl.update('e');
+        newl.update('o');
+        newl.update('h');
         calculateProbabilities(newl);
         System.out.println(newl.toString());
 

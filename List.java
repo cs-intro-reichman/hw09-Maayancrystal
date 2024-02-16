@@ -58,13 +58,13 @@ public static void main(String[] args) {
             return "()";
         }
         else{
-            String str = "(";
+            String str = "";
             Node current = first; 
             while(current != null){
                 str += current.cp.toString();
                 current = current.next;
             }
-            return str.substring(0, str.length()) + ")";
+            return str.substring(0, str.length());
         }
         
     }

@@ -93,17 +93,19 @@ public class LanguageModel {
     // Returns a random character from the given probabilities list.
 	public static char getRandomChar(List probs) {
 		    double r = (double)(Math.random() * 1) ;
-            System.out.println(r);
             CharData ch = probs.get(0);
             char toreturn = ch.chr;
+            if(ch.cp > r){
+                return ch.chr;
+            }
             for(int i = 1 ; i < probs.getSize() ; i++){
+                ch = probs.get(i);
                 if (ch != null){
-                    System.out.println(ch.cp);
                     if(ch.cp > r){
-                        return ch.chr;
+                        toreturn = ch.chr;
+                        break;
                     }
                 }
-                ch = probs.get(i);
             }
             return toreturn;
 	}
@@ -139,9 +141,10 @@ public class LanguageModel {
         newl.addFirst('c');
         newl.update('m');
         newl.update('e');
-        
+        calculateProbabilities(newl);
+        System.out.println(newl.toString());
+
 		for(int i = 0 ; i < 10 ; i++){
-            calculateProbabilities(newl);
             System.out.println(getRandomChar(newl));
         }
           

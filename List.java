@@ -37,10 +37,8 @@ public class List {
         }
         else{
             Node current = first; 
-            while(current.next != null){
-                current = current.next;
-            }
-            current.next = newNode;
+           first = newNode;
+           first.next = current;
         }
         size++;
     }

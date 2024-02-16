@@ -47,14 +47,17 @@ public class LanguageModel {
             }
         }
 
-        int totalCp = 0;
+        double totalCp = 0;
         for(int i = 0 ; i < probs.getSize() ; i++){
             CharData ch = probs.get(i);
-            ch.p = count / ch.count;
-            ch.cp = totalCp + ch.p;
+            if(ch != null){
+            ch.p = (double) (count / ch.count);
+            ch.cp = (double) (totalCp + ch.p);
+            totalCp = ch.cp;
+            }
         }          
         }
-	}
+	
 
     // Returns a random character from the given probabilities list.
 	public char getRandomChar(List probs) {

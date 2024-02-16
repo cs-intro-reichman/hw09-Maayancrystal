@@ -5,7 +5,6 @@
  *  mention the existence of the Node objects). */
 public class List {
 
-    private static final Exception IndexOutOfBoundsException = null;
 
     // Points to the first node in this list
     private Node first;
@@ -122,10 +121,10 @@ public class List {
     /** Returns the CharData object at the specified index in this list. 
      *  If the index is negative or is greater than the size of this list, 
      *  throws an IndexOutOfBoundsException. 
-     * @throws Exception */
+     *  */
     public CharData get(int index) throws Exception {
         if (index < 0 || index > size){
-            throw (IndexOutOfBoundsException);
+            return null;
         }
             Node current = first; 
             int steps = 0;

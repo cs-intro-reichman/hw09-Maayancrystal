@@ -5,7 +5,16 @@
  *  mention the existence of the Node objects). */
 public class List {
 
+public static void main(String[] args) {
+    List nwel = new List();
+    nwel.addFirst('a');
+    nwel.addFirst('b');
+    nwel.addFirst('c');
 
+    System.out.println(nwel.toString());
+
+
+}
     // Points to the first node in this list
     private Node first;
 
@@ -55,7 +64,7 @@ public class List {
                 str += current.cp.toString();
                 current = current.next;
             }
-            return str.substring(0, str.length() -1) + ")";
+            return str.substring(0, str.length()) + ")";
         }
         
     }

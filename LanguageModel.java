@@ -37,7 +37,7 @@ public class LanguageModel {
         char c; 
         
         In in = new In(fileName);
-        for(int i = 1 ; i <= 2 ; i++){
+        for(int i = 1 ; i <= windowLength ; i++){
             if(!in.isEmpty()){
                 window = window + in.readChar();
             }
@@ -45,22 +45,21 @@ public class LanguageModel {
         while(!in.isEmpty()){
 
             c = in.readChar();
-            if (CharDataMap.containsKey(window) == true){
+            if (CharDataMap.containsKey(window)){
             List probs = CharDataMap.get(window);
             probs.update(c);
             }
             else{
             List probs = new List();
-            CharDataMap.put(window, probs);
             probs.update(c);
+            CharDataMap.put(window, probs);
+            
             }
             
-
-            window = window.substring(1);
-            window = window + c;
+            window = window.substring(1) + c;
             }
 
-        for( List probs : CharDataMap.values()){
+        for(List probs : CharDataMap.values()){
             calculateProbabilities(probs);
         }
         }

@@ -37,6 +37,10 @@ public static void main(String[] args) {
         return first.cp;
     }
 
+    public Node getFirstNode() {
+        return first;
+    }
+
     /** GIVE Adds a CharData object with the given character to the beginning of this list. */
     public void addFirst(char chr) {
         CharData newChar = new CharData(chr);

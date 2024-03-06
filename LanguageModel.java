@@ -45,17 +45,14 @@ public class LanguageModel {
         while(!in.isEmpty()){
 
             c = in.readChar();
-            if (CharDataMap.containsKey(window)){
             List probs = CharDataMap.get(window);
-            probs.update(c);
+            if (probs == null) 
+            {
+                probs = new List();
+                CharDataMap.put(window, probs);
             }
-            else{
-            List probs = new List();
+
             probs.update(c);
-            CharDataMap.put(window, probs);
-            
-            }
-            
             window = window.substring(1) + c;
             }
 

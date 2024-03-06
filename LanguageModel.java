@@ -43,7 +43,6 @@ public class LanguageModel {
             }
 
         while(!in.isEmpty()){
-
             c = in.readChar();
             List probs = CharDataMap.get(window);
             if (probs == null) 
@@ -53,7 +52,8 @@ public class LanguageModel {
             }
 
             probs.update(c);
-            window = window.substring(1) + c;
+            window = window + c;
+            window = window.substring(1);
             }
 
         for(List probs : CharDataMap.values()){
